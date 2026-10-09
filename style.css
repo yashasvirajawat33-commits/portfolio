@@ -1,0 +1,248 @@
+:root {
+  --ink: #0b1f3a;
+  --ink-soft: #3a4d68;
+  --mist: #e8eef6;
+  --mist-deep: #d4deec;
+  --paper: #ffffff;
+  --accent: #c9a227;
+  --accent-hover: #a8861a;
+  --navy: #123056;
+  --line: rgba(18, 48, 86, 0.14);
+  --font-display: "Syne", sans-serif;
+  --font-body: "Figtree", sans-serif;
+  --space: clamp(1.25rem, 4vw, 2.5rem);
+  --max: 40rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--paper);
+  position: relative;
+}
+
+.page-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(ellipse 80% 50% at 10% -10%, #c5d4ea 0%, transparent 55%),
+    radial-gradient(ellipse 60% 45% at 95% 15%, #f3e6b8 0%, transparent 50%),
+    linear-gradient(165deg, var(--mist) 0%, var(--paper) 45%, var(--mist-deep) 100%);
+  animation: bg-drift 18s ease-in-out infinite alternate;
+}
+
+.page-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.35;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+  pointer-events: none;
+}
+
+@keyframes bg-drift {
+  from {
+    filter: hue-rotate(0deg);
+  }
+  to {
+    filter: hue-rotate(12deg);
+  }
+}
+
+.hero,
+.dark-mode {
+  background-color: #222;
+  color: white;
+}
+main,
+footer {
+  width: min(100% - 2.5rem, var(--max));
+  margin-inline: auto;
+}
+
+.hero {
+  padding: clamp(4rem, 14vh, 7rem) 0 var(--space);
+  animation: rise-in 0.8s ease-out both;
+}
+
+.hero-label {
+  margin: 0 0 0.75rem;
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.hero h1 {
+  margin: 0 0 1rem;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2.25rem, 8vw, 3.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: var(--navy);
+  overflow-wrap: anywhere;
+}
+
+.hero-tagline {
+  margin: 0;
+  max-width: 28rem;
+  font-size: 1.125rem;
+  color: var(--ink-soft);
+}
+
+main {
+  padding-bottom: calc(var(--space) * 1.5);
+}
+
+section {
+  padding: var(--space) 0;
+  border-top: 1px solid var(--line);
+  animation: rise-in 0.7s ease-out both;
+}
+
+.about {
+  animation-delay: 0.12s;
+}
+
+.skills {
+  animation-delay: 0.22s;
+}
+
+.projects {
+  animation-delay: 0.32s;
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+h2 {
+  margin: 0 0 1rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.35rem;
+  letter-spacing: -0.02em;
+  color: var(--navy);
+}
+
+.about p {
+  margin: 0;
+  color: var(--ink-soft);
+}
+
+.skills ul,
+.projects ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.skills li {
+  position: relative;
+  padding: 0.55rem 0 0.55rem 1.25rem;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink-soft);
+}
+
+.skills li:last-child,
+.projects li:last-child {
+  border-bottom: none;
+}
+
+.skills li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 1.05rem;
+  width: 0.45rem;
+  height: 0.45rem;
+  background: var(--accent);
+}
+
+.projects li {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink-soft);
+}
+
+a {
+  display: inline-block;
+  font-weight: 600;
+  color: var(--navy);
+  text-decoration: none;
+  transform-origin: left center;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+a:hover {
+  text-decoration: underline;
+  transform: scale(1.02);
+}
+
+.projects a {
+  position: relative;
+  color: var(--accent);
+}
+
+.projects a:hover,
+.projects a:focus-visible {
+  color: var(--accent-hover);
+  outline: none;
+}
+
+footer {
+  padding: var(--space) 0 calc(var(--space) * 1.5);
+  border-top: 1px solid var(--line);
+  animation: rise-in 0.7s ease-out 0.4s both;
+}
+
+footer p {
+  margin: 0;
+  font-size: 0.9375rem;
+  color: var(--ink-soft);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-bg,
+  .hero,
+  section,
+  footer {
+    animation: none;
+  }
+
+  a {
+    transition: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: clamp(2.25rem, 11vw, 3rem);
+  }
+}
