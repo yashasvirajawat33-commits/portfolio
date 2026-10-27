@@ -1,71 +1,213 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PLACEHOLDER Your Name — Portfolio</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <div class="page-bg" aria-hidden="true"></div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>  Yashasvi Rajawat | B.Tech CSE (AI &amp; ML) </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&amp;family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="chatbot.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#home">Skip to content</a>
 
-  <header class="hero">
-    <p class="hero-label">Personal profile</p>
-    <h1>PLACEHOLDER Your Name</h1>
-    <p class="hero-tagline">PLACEHOLDER Short tagline — e.g. designer, developer, or student based in your city.</p>
-  </header>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="#home">  Yashasvi Rajawat </a>
 
-  <main>
-    <section class="about" id="about" aria-labelledby="about-heading">
-      <h2 id="about-heading">About</h2>
+        <button
+          class="nav-toggle"
+          id="navToggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="siteNav"
+        >
+          Menu
+        </button>
+
+        <nav id="siteNav" class="site-nav" aria-label="Primary">
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Me</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#chatbot">AI Chatbot</a></li>
+          </ul>
+        </nav>
+
+        <button id="themeToggle" type="button">Switch to Dark Mode</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" id="home" aria-labelledby="home-heading">
+        <p class="eyebrow"> Personal portfolio </p>
+        <h1 id="home-heading"> Yashasvi Rajawat </h1>
+        <p class="tagline">
+           B.Tech CSE student with a specialization in AI &amp; ML at JECRC
+           University.
+        </p>
+        <p class="hero-actions">
+          <a class="button" href="#projects">View projects</a>
+          <a class="button button-secondary" href="#contact">Contact</a>
+        </p>
+      </section>
+
+      <section class="about" id="about" aria-labelledby="about-heading">
+        <h2 id="about-heading">About Me</h2>
+        <p>
+          I am a second-year B.Tech Computer Science and Engineering student
+          with a specialization in Artificial Intelligence and Machine Learning
+          at JECRC University.
+        </p>
+        <p>
+          Away from the classroom I like to read books and explore new places.
+        </p>
+      </section>
+
+      <section class="skills" id="skills" aria-labelledby="skills-heading">
+        <h2 id="skills-heading">Skills</h2>
+        <ul>
+          <li>C++</li>
+          <li>Python</li>
+          </ul>
+      </section>
+
+      <section id="projects" aria-labelledby="projects-heading">
+        <h2 id="projects-heading">Projects</h2>
+        <p>
+          These five projects are part of this portfolio and the related files
+          in this repository.
+        </p>
+        <ul class="project-list">
+          <li>
+            <h3>Python program collection</h3>
+            <p>
+              — A collection of Python programs created to practise programming concepts and problem-solving techniques.
+            </p>
+           
+              <a href="https://github.com/yashasvirajawat33-commits/python-programs-collection"
+                >veiw code</a></p>
+          </li>
+          <li>
+            <h3>Messy program improvements</h3>
+            <p>
+              — A collection of Python programs created to practise programming concepts and problem-solving techniques.
+            </p>
+            <p><a href="https://github.com/yashasvirajawat33-commits/messy-program-improvements">veiw code</a></p>
+          </li>
+          <li>
+            <h3>Book reading list</h3>
+            <p>
+              — A reading-list application for organizing books and keeping track of a personal reading collection.
+            </p>
+            <p>
+             <a href="https://github.com/yashasvirajawat33-commits/messy-program-improvements">veiw</a></p>
+          </li>
+          <li>
+            <h3>Buggy fixed program</h3>
+            <p>
+              — An exploration of AI-assisted debugging and code improvement using Cursor AI.
+            </p>
+            <p>
+              <a href="https://github.com/yashasvirajawat33-commits/bug-fixing-">veiw</a>
+            </p>
+          </li>
+          <li>
+            <h3>Quiz</h3>
+            <p>
+              A Python program that prints a ranked student report card from a
+              sample mark list, including totals, averages, grades, and pass or
+              fail.
+            </p>
+            <p>
+              <a href="https://PLACEHOLDER-report-card-link.example.com"
+                >PLACEHOLDER Report card project link</a
+              >
+            </p>
+          </li>
+        </ul>
+      </section>
+
+      <section id="weather" aria-labelledby="weather-heading">
+        <h2 id="weather-heading">Weather</h2>
+        <p>Look up the current weather for a city.</p>
+        <div class="weather-controls">
+          <label for="cityInput">City</label>
+          <input
+            type="text"
+            id="cityInput"
+            name="city"
+            placeholder="Enter a city"
+          />
+          <button id="weatherButton" type="button">Get Weather</button>
+        </div>
+        <div id="weatherResult">Enter a city to see the weather.</div>
+      </section>
+
+      <section class="contact" id="contact" aria-labelledby="contact-heading">
+        <h2 id="contact-heading">Contact Information</h2>
+        <ul>
+          <li>
+            Email:
+            <a href="mailto:yashasvirajawat33@gmail.com"
+              >yashasvirajawat33@gmail.com</a
+            >
+          </li>
+          <li>
+            GitHub:
+            <a href="https://github.com/yashasvirajawat33-commits"
+              >github.com/yashasvirajawat33-commits</a
+            >
+          </li>
+          <li>Phone: 7877327366</li>
+          <li>
+            LinkedIn:
+            <a href="https://www.linkedin.com/in/yashasvi-rajawat-348489366?utm_source=share_via&utm_content=profile&utm_medium=member_android"
+              >www.linkedin.com/in/yashasvi-rajawat-348489366?utm_source=share_via&utm_content=profile&utm_medium=member_android</a
+            >
+          </li>
+        </ul>
+      </section>
+
+      <section class="ai-chat" id="chatbot" aria-labelledby="chatbot-heading">
+        <h2 id="chatbot-heading">AI Chatbot</h2>
+        <p>Ask questions about my portfolio.</p>
+        <div id="chatMessages" aria-live="polite"></div>
+        <div class="chat-input-row">
+          <label class="visually-hidden" for="userInput">Question</label>
+          <input
+            type="text"
+            id="userInput"
+            placeholder="Type your question..."
+          />
+          <button id="sendButton" type="button">Send</button>
+        </div>
+        <p id="chatStatus" role="status"></p>
+        <p class="chat-note">
+          AI chat works in the local classroom demonstration only. The API key
+          is not published with this website.
+        </p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
       <p>
-        PLACEHOLDER Write a short about paragraph here. Introduce who you are,
-        what you care about, and what you are currently working on or learning.
+        Email:
+        <a href="mailto:yashasvirajawat33@gmail.com"
+          >yashasvirajawat33@gmail.com</a
+        >
       </p>
-    </section>
+    </footer>
 
-    <section class="skills" id="skills" aria-labelledby="skills-heading">
-      <h2 id="skills-heading">Skills</h2>
-      <ul>
-        <li>PLACEHOLDER Skill one</li>
-        <li>PLACEHOLDER Skill two</li>
-        <li>PLACEHOLDER Skill three</li>
-        <li>PLACEHOLDER Skill four</li>
-        <li>PLACEHOLDER Skill five</li>
-      </ul>
-    </section>
-
-    <section class="projects" id="projects" aria-labelledby="projects-heading">
-      <h2 id="projects-heading">Projects</h2>
-      <ul>
-        <li>
-          <a href="https://PLACEHOLDER-project-one.example.com">PLACEHOLDER Project One</a>
-          <span> — PLACEHOLDER Brief description of project one.</span>
-        </li>
-        <li>
-          <a href="https://PLACEHOLDER-project-two.example.com">PLACEHOLDER Project Two</a>
-          <span> — PLACEHOLDER Brief description of project two.</span>
-        </li>
-        <li>
-          <a href="https://PLACEHOLDER-project-three.example.com">PLACEHOLDER Project Three</a>
-          <span> — PLACEHOLDER Brief description of project three.</span>
-        </li>
-      </ul>
-    </section>
-  </main>
-
-  <footer>
-    <p>PLACEHOLDER Contact: your.email@example.com</p>
-    <button id="themeToggle">Switch to Dark Mode</button>
     <script src="script.js"></script>
-  </footer>
-  
-
-</body>
+    <script src="config.js"></script>
+    <script src="chatbot.js"></script>
+  </body>
 </html>
-<footer>
-  
-
