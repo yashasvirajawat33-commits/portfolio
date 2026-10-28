@@ -1,12 +1,9 @@
+
 const chatInput = document.getElementById("userInput");
 const chatButton = document.getElementById("sendButton");
 const chatMessages = document.getElementById("chatMessages");
 const chatStatus = document.getElementById("chatStatus");
 
-// Temperature for chatbot responses
-let chatTemperature = 0.2;
-
-// Display a message in the chat window
 function showChatMessage(role, text) {
   const message = document.createElement("div");
 
@@ -16,16 +13,13 @@ function showChatMessage(role, text) {
 
   message.textContent = text;
   chatMessages.appendChild(message);
-
   chatMessages.scrollTop = chatMessages.scrollHeight;
 }
 
-// Send a message to the Vercel backend
 async function sendChatMessage() {
   if (chatButton.disabled) return;
 
   const question = chatInput.value.trim();
-
   if (!question) return;
 
   showChatMessage("user", question);
@@ -35,47 +29,23 @@ async function sendChatMessage() {
   chatStatus.textContent = "AI is thinking...";
 
   try {
-    const response = await fetch(
-      CONFIG.baseUrl.replace(/\/$/, "") +
-      "/chat/completions",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": "Bearer " + CONFIG.apiKey
-        },
-        body: JSON.stringify({
-          model: CONFIG.model,
-          temperature: chatTemperature,
-          messages: [
-            {
-              role: "system",
-              content:
-                "You are an AI assistant for a portfolio " +
-                "website that includes a weather application. " +
-                "Answer questions about HTML, CSS, JavaScript, " +
-                "APIs, and the projects described to you. " +
-                "Do not invent personal information. " +
-                "Keep replies under 60 words."
-            },
-            {
-              role: "user",
-              content: question
-            }
-          ]
-        })
-      }
-    );
-
-    if (response.status === 429) {
-      throw new Error("RATE_LIMIT");
-    }
+    const response = await fetch("/api/chat", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        message: question
+      })
+    });
 
     const data = await response.json();
 
     if (!response.ok) {
       console.error("Chat backend error:", data.error);
-      throw new Error("API_ERROR");
+      throw new Error(
+        response.status === 429 ? "RATE_LIMIT" : "API_ERROR"
+      );
     }
 
     const answer = data.reply;
@@ -112,10 +82,8 @@ async function sendChatMessage() {
   }
 }
 
-// Send message when the button is clicked
 chatButton.addEventListener("click", sendChatMessage);
 
-// Send message when Enter is pressed
 chatInput.addEventListener("keydown", function (event) {
   if (event.key === "Enter" && !event.shiftKey) {
     event.preventDefault();
