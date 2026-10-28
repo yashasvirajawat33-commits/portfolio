@@ -56,7 +56,7 @@ async function sendChatMessage() {
           temperature: chatTemperature,
           messages: [
             {
-              role: "system",
+              role: ["system", "user", "assistant"].include(m.role)
               content:
                 "You are an AI assistant for a portfolio " +
                 "website that includes a weather application. " +
