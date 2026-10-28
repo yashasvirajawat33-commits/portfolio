@@ -3,9 +3,10 @@ const chatButton = document.getElementById("sendButton");
 const chatMessages = document.getElementById("chatMessages");
 const chatStatus = document.getElementById("chatStatus");
 
-// Temperature for our experiment
+// Temperature for chatbot responses
 let chatTemperature = 0.2;
 
+// Display a message in the chat window
 function showChatMessage(role, text) {
   const message = document.createElement("div");
 
@@ -19,15 +20,7 @@ function showChatMessage(role, text) {
   chatMessages.scrollTop = chatMessages.scrollHeight;
 }
 
-// Disable chat when local configuration is absent
-if (typeof CONFIG === "undefined" ||
-    !CONFIG.apiKey ||
-    CONFIG.apiKey === "YOUR_PRIVATE_GROQ_KEY") {
-  chatButton.disabled = true;
-  chatStatus.textContent =
-    "AI chat is available in the local demonstration only.";
-}
-
+// Send a message to the Vercel backend
 async function sendChatMessage() {
   if (chatButton.disabled) return;
 
@@ -56,7 +49,7 @@ async function sendChatMessage() {
           temperature: chatTemperature,
           messages: [
             {
-              role: ["system", "user", "assistant"].include(m.role)
+              role: "system",
               content:
                 "You are an AI assistant for a portfolio " +
                 "website that includes a weather application. " +
@@ -78,13 +71,14 @@ async function sendChatMessage() {
       throw new Error("RATE_LIMIT");
     }
 
+    const data = await response.json();
+
     if (!response.ok) {
+      console.error("Chat backend error:", data.error);
       throw new Error("API_ERROR");
     }
 
-    const data = await response.json();
-
-    const answer = data.choices?.[0]?.message?.content;
+    const answer = data.reply;
 
     if (typeof answer !== "string" || !answer.trim()) {
       throw new Error("INVALID_RESPONSE");
@@ -114,13 +108,17 @@ async function sendChatMessage() {
   } finally {
     chatButton.disabled = false;
     chatStatus.textContent = "";
+    chatInput.focus();
   }
 }
 
+// Send message when the button is clicked
 chatButton.addEventListener("click", sendChatMessage);
 
-chatInput.addEventListener("keydown", function(event) {
-  if (event.key === "Enter") {
+// Send message when Enter is pressed
+chatInput.addEventListener("keydown", function (event) {
+  if (event.key === "Enter" && !event.shiftKey) {
+    event.preventDefault();
     sendChatMessage();
   }
 });
